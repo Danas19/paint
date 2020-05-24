@@ -18,12 +18,9 @@ let currentColor = colorTag.value;
 
 makeTable(50, 50);
 
-window.mouseDown = false;
+let mouseDown = false;
 document.onmousedown = function() {
-    window.mouseDown = true;
-}
-document.onmouseup = function() {
-    window.mouseDown = false;
+	mouseDown = !mouseDown
 }
 
 function makeTable(lines, height) {
