@@ -1,0 +1,67 @@
+<input type='color'>
+</input>
+
+<table>
+</table>
+	
+<script>
+let colorTag = document.querySelector('input[type=color]');
+
+colorTag.addEventListener('change', function() {
+	console.log(colorTag.value);
+	currentColor = colorTag.value;
+});
+
+let tableTag = document.querySelector('table');
+console.log(tableTag);
+let currentColor = colorTag.value;
+
+makeTable(50, 50);
+
+window.mouseDown = false;
+document.onmousedown = function() {
+    window.mouseDown = true;
+}
+document.onmouseup = function() {
+    window.mouseDown = false;
+}
+
+function makeTable(lines, height) {
+	for (let i = 0; i < lines; i++) {
+		let newRow = document.createElement('tr');
+
+		for (let j = 0; j < height; j++) {
+			let newTd = document.createElement('td');
+			newTd.addEventListener('mouseover', function() {
+				if (mouseDown) {
+					newTd.style.backgroundColor = currentColor;
+				}
+			});
+			newTd.addEventListener('click', function() {
+				newTd.style.backgroundColor = currentColor;
+			});
+			newRow.appendChild(newTd);
+		}
+
+		tableTag.appendChild(newRow);
+	}
+}
+
+</script>
+
+<style>
+table, td, th {
+	background-color: black;
+}
+
+td, th {
+	width: 20px;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+}
+
+input[type=color] {
+	float: right;
+}
+</style>
